@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load i18n %}
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoicmV4d3UxMTIzIiwiYSI6ImNrYTUyejVkdTBhcGkzaHFmN3RlZXBtZHcifQ.m9Ejwl41uqQfXxNP_H-6rw';
+  var places = {
+    'type': 'FeatureCollection',
+    'features': [
+      {% if areas %}
+        {% for area in areas %}
+        {
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [{{ area.lon }}, {{ area.lat }}]
+        },
+          'properties': {'location': '{{ area.location }}', 'name': '{{ area.location }}',  'district': '{% trans area.city %} {{ area.district }}', 'fish': '{{ area.fingerling_area.all }}'}
+        },
+        {% endfor %}
+      {% endif %}
+    ]
+  };
+  var filterGroup = document.getElementById('filter-group');
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [121.741398, 25.131127],
+    zoom: 13
+  });
+
+  map.on('load', function() {
+    {% load static %}
+    map.loadImage('{% static "media/icon/food.png" %}', function(error, image) {
+       if (error) throw error;
+       if (!map.hasImage('border-image')) {
+         map.addImage('fishing-area', image);
+
+         map.addSource('places', {
+           'type': 'geojson',
+           'data': places
+         });
+
+        places.features.forEach(function(feature) {
+          var symbol = feature.properties['location'];
+          var layerID = symbol;
+          if (!map.getLayer(layerID)) {
+            map.addLayer({
+              'id': layerID,
+              'type': 'symbol',
+              'source': 'places',
+              'layout': {
+                'icon-image': 'fishing-area',
+                'icon-size': 0.1,
+                'icon-padding': 0,
+                'icon-allow-overlap': true
+              },
+              'filter': ['==', 'location', symbol]
+            });
+          }
+      });
+    }
+  })
+});
+
+map.addControl(
+  new mapboxgl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true
+    },
+    trackUserLocation: true
+  })
+);
+
+
+</script>
+{% endblock %}

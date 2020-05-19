@@ -1,0 +1,95 @@
+
+msgid ""
+msgstr ""
+
+#: map/models.py:32
+msgid "Keelung"
+msgstr "基隆市"
+
+#: map/models.py:33
+msgid "New Taipei City"
+msgstr "新北市"
+
+#: map/models.py:34
+msgid "Taipei"
+msgstr "台北市"
+
+#: map/models.py:35
+msgid "Taoyuan"
+msgstr "桃園市"
+
+#: map/models.py:36
+msgid "Hsinchu"
+msgstr "新竹"
+
+#: map/models.py:37
+msgid "Miaoli"
+msgstr "苗栗"
+
+#: map/models.py:38
+msgid "Taichung"
+msgstr "台中市"
+
+#: map/models.py:39
+msgid "Changhua"
+msgstr "彰化"
+
+#: map/models.py:40
+msgid "Nantou"
+msgstr "南投"
+
+#: map/models.py:41
+msgid "Yunlin"
+msgstr "雲林"
+
+#: map/models.py:42
+msgid "Chiayi"
+msgstr "嘉義"
+
+#: map/models.py:43
+msgid "Tainan"
+msgstr "台南市"
+
+#: map/models.py:44
+msgid "Kaohsiung"
+msgstr "高雄市"
+
+#: map/models.py:45
+msgid "Pingtung"
+msgstr "屏東"
+
+#: map/models.py:46
+msgid "Yilan"
+msgstr "宜蘭"
+
+#: map/models.py:47
+msgid "Hualien"
+msgstr "花蓮"
+
+#: map/models.py:48
+msgid "Taitung"
+msgstr "台東"
+
+#: map/models.py:49
+msgid "Penghu"
+msgstr "澎湖"
+
+#: map/models.py:50
+msgid "Green Island"
+msgstr "綠島"
+
+#: map/models.py:51
+msgid "Orchid Island"
+msgstr "蘭嶼"
+
+#: map/models.py:52
+msgid "Kinmen"
+msgstr "金門"
+
+#: map/models.py:53
+msgid "Matsu"
+msgstr "馬祖"
+
+#: map/models.py:54
+msgid "Lienchiang"
+msgstr "連江"

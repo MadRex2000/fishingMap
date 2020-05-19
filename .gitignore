@@ -1,0 +1,31 @@
+# Environment variables
+local.env
+/.env
+
+*.ini
+
+# Django stuff:
+*.pot
+*.log
+venv/
+/src/assets/
+local.db
+
+# SQLite3 database files:
+*.db
+*.sqlite3
+*.sqlite
+
+# Logs:
+*.log
+*.log-*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+.cache/
+*.py[cod]
+
+
+# Mac
+.DS_Store
+._*

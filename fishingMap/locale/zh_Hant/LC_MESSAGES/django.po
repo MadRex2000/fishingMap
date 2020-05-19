@@ -1,0 +1,262 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-15 15:49+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: map/models.py:6
+msgid "Keelung"
+msgstr "基隆市"
+
+msgid "KEL"
+msgstr "基隆市"
+
+#: map/models.py:7
+msgid "New Taipei City"
+msgstr "新北市"
+
+msgid "NTPC"
+msgstr "新北市"
+
+#: map/models.py:8
+msgid "Taipei"
+msgstr "台北市"
+
+msgid "TPE"
+msgstr "台北市"
+
+#: map/models.py:9
+msgid "Taoyuan"
+msgstr "桃園市"
+
+msgid "TYN"
+msgstr "桃園市"
+
+#: map/models.py:10
+msgid "Hsinchu"
+msgstr "新竹"
+
+msgid "HSZ"
+msgstr "新竹"
+
+#: map/models.py:11
+msgid "Miaoli"
+msgstr "苗栗"
+
+msgid "ZMI"
+msgstr "苗栗"
+
+#: map/models.py:12
+msgid "Taichung"
+msgstr "台中市"
+
+msgid "TXG"
+msgstr "台中市"
+
+#: map/models.py:13
+msgid "Changhua"
+msgstr "彰化"
+
+msgid "CHW"
+msgstr "彰化"
+
+#: map/models.py:14
+msgid "Nantou"
+msgstr "南投"
+
+msgid "NTC"
+msgstr "南投"
+
+#: map/models.py:15
+msgid "Yunlin"
+msgstr "雲林"
+
+msgid "YUN"
+msgstr "雲林"
+
+#: map/models.py:16
+msgid "Chiayi"
+msgstr "嘉義"
+
+msgid "CYI"
+msgstr "嘉義"
+
+#: map/models.py:17
+msgid "Tainan"
+msgstr "台南市"
+
+msgid "TNN"
+msgstr "台南市"
+
+#: map/models.py:18
+msgid "Kaohsiung"
+msgstr "高雄市"
+
+msgid "KHH"
+msgstr "高雄市"
+
+#: map/models.py:19
+msgid "Pingtung"
+msgstr "屏東"
+
+msgid "PIF"
+msgstr "屏東"
+
+#: map/models.py:20
+msgid "Yilan"
+msgstr "宜蘭"
+
+msgid "ILA"
+msgstr "宜蘭"
+
+#: map/models.py:21
+msgid "Hualien"
+msgstr "花蓮"
+
+msgid "HUN"
+msgstr "花蓮"
+
+#: map/models.py:22
+msgid "Taitung"
+msgstr "台東"
+
+msgid "TTT"
+msgstr "台東"
+
+#: map/models.py:23
+msgid "Penghu"
+msgstr "澎湖"
+
+msgid "PEH"
+msgstr "澎湖"
+
+#: map/models.py:24
+msgid "Green Island"
+msgstr "綠島"
+
+msgid "GNI"
+msgstr "綠島"
+
+#: map/models.py:25
+msgid "Orchid Island"
+msgstr "蘭嶼"
+
+msgid "KYD"
+msgstr "蘭嶼"
+
+#: map/models.py:26
+msgid "Kinmen"
+msgstr "金門"
+
+msgid "KNH"
+msgstr "金門"
+
+#: map/models.py:27
+msgid "Matsu"
+msgstr "馬祖"
+
+msgid "MFK"
+msgstr "馬祖"
+
+#: map/models.py:28
+msgid "Lienchiang"
+msgstr "連江"
+
+msgid "LNN"
+msgstr "連江"
+
+
+#: map/models.py:39
+msgid "Jan"
+msgstr "一月"
+
+msgid "January"
+msgstr "一月"
+
+#: map/models.py:40
+msgid "Feb"
+msgstr "二月"
+
+msgid "February"
+msgstr "二月"
+
+#: map/models.py:41
+msgid "Mar"
+msgstr "三月"
+
+msgid "March"
+msgstr "三月"
+
+#: map/models.py:42
+msgid "Apr"
+msgstr "四月"
+
+msgid "April"
+msgstr "四月"
+
+#: map/models.py:43
+msgid "May"
+msgstr "五月"
+
+#: map/models.py:44
+msgid "Jun"
+msgstr "六月"
+
+msgid "June"
+msgstr "六月"
+
+#: map/models.py:45
+msgid "Jul"
+msgstr "七月"
+
+msgid "July"
+msgstr "七月"
+
+#: map/models.py:46
+msgid "Aug"
+msgstr "八月"
+
+msgid "August"
+msgstr "八月"
+
+#: map/models.py:47
+msgid "Sep"
+msgstr "九月"
+
+msgid "September"
+msgstr "九月"
+
+#: map/models.py:48
+msgid "Oct"
+msgstr "十月"
+
+msgid "October"
+msgstr "十月"
+
+#: map/models.py:49
+msgid "Nov"
+msgstr "十一月"
+
+msgid "November"
+msgstr "十一月"
+
+#: map/models.py:50
+msgid "Dec"
+msgstr "十二月"
+
+msgid "Decembe"
+msgstr "十二月"
