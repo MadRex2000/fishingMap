@@ -89,13 +89,17 @@
           'type': 'Point',
           'coordinates': [{{ area.lon }}, {{ area.lat }}]
         },
-          'properties': {'location': '{{ area.location }}', 'name': '{{ area.location }}',  'district': '{% trans area.city %} {{ area.district }}', 'fish': '{{ area.fingerling_area.all }}'}
+          'properties': {
+            'location': '{{ area.location }}',
+            'name': '{{ area.location }}',
+            'district': '{{ area.city }} {{ area.district }}',
+            'fish': [{% for branch in area.city.branches_city.all %}{% for fish in branch.fingerling_branch.all %}'{{ fish.name }}',{% endfor %}{% endfor %}]
+          }
         },
         {% endfor %}
       {% endif %}
     ]
   };
-
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
@@ -128,6 +132,7 @@
           ' (' +
           feature.properties.district +
           ')'
+          + feature.properties.fish
           )
           .addTo(map);
         });

@@ -60,8 +60,8 @@ class area(models.Model):
     location = models.CharField(blank = True, max_length = 100)
     lat = models.FloatField(verbose_name = 'Latitude')
     lon = models.FloatField(verbose_name = 'Longitude')
-    city = models.ManyToManyField('city', related_name = 'area_city')
-    district = models.CharField(blank = True, max_length = 100)
+    city = models.ForeignKey('city', related_name = 'area_city', verbose_name = '縣市', on_delete=models.CASCADE)
+    district = models.CharField(blank = True, max_length = 100, verbose_name = '行政區')
 
     def __str__(self):
         return str(self.location)
@@ -79,7 +79,7 @@ class fingerling(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length = 100, verbose_name = '名稱')
     nickname = models.CharField(max_length = 100, verbose_name = '俗名')
-    branch = models.ManyToManyField('branches', related_name = 'fingerling_branch', verbose_name = '科別')
+    branch = models.ForeignKey('branches', related_name = 'fingerling_branch', verbose_name = '科別', on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.name)
