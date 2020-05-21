@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from .models import area, fingerling
 
 def home(request):
-
-    return render(request, 'home.html')
+    areas = area.objects.all()
+    return render(request, 'home.html', {'areas': areas})
 
 def fish(request):
     areas = area.objects.all()
@@ -16,4 +16,5 @@ def areas(request):
 
 def tests(request):
     areas = area.objects.all()
-    return render(request, 'test.html', {'areas': areas})
+    fishes = fingerling.objects.all()
+    return render(request, 'test.html', {'areas': areas, 'fingerling': fishes})

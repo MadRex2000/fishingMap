@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 {% load i18n %}
 <style>
@@ -16,6 +17,7 @@
 
   .filter-group input[type='checkbox']:first-child + label {
     border-radius: 3px 3px 0 0;
+    overflow: auto;
   }
 
   .filter-group label:last-child {
@@ -58,7 +60,7 @@
   .map-overlay {
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     position: absolute;
-    width: 25%;
+    width: 20%;
     top: 0;
     left: 0;
     padding: 10px;
@@ -92,18 +94,18 @@
     margin: 0;
     cursor: ew-resize;
   }
+
 </style>
 
 <div id="map"></div>
 <div class="map-overlay top">
   <div class="map-overlay-inner">
-    <h2>月份</h2>
+    <h2>找尋魚的蹤跡</h2>
     <label id="month"></label>
     <input id="slider" type="range" min="0" max="11" step="1" value="0" />
   </div>
 </div>
-<nav id="filter-group" class="filter-group"></nav>
-
+<nav style="height: 75%; overflow: auto;" id="filter-group" class="filter-group"></nav>
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoicmV4d3UxMTIzIiwiYSI6ImNrYTUyejVkdTBhcGkzaHFmN3RlZXBtZHcifQ.m9Ejwl41uqQfXxNP_H-6rw';
   var places = {
@@ -124,7 +126,7 @@
     ]
   };
 
-  var fishes = {
+  var fish = {
     'type': 'FeatureCollection',
     'features': [{% if fingerling %}{% for fish in fingerling %}
       {
@@ -138,6 +140,7 @@
     ]
   }
 
+  var fishess = [];
   var months = [
   '一月',
   '二月',
@@ -161,78 +164,143 @@
     zoom: 13
   });
 
-  function filterBy(month) {
-    var filters = ['==', 'month', month];
-    //map.setFilter(layerID, filters);
-    document.getElementById('month').textContent = months[month];
-  }
-
-  map.on('load', function() {
-    {% load static %}
-    map.loadImage('{% static "media/icon/food.png" %}', function(error, image) {
-       if (error) throw error;
-       if (!map.hasImage('border-image')) {
-         map.addImage('fishing-area', image);
-
-         map.addSource('areas', {
-           'type': 'geojson',
-           'data': places
-         });
-
-        places.features.forEach(function(feature) {
-          var symbol = feature.properties['location'];
-          var layerID = symbol;
-          if (!map.getLayer(layerID)) {
-            map.addLayer({
-              'id': layerID,
-              'type': 'symbol',
-              'source': 'areas',
-              'layout': {
-                'icon-image': 'fishing-area',
-                'icon-size': 0.1,
-                'icon-padding': 0,
-                'icon-allow-overlap': true
-              },
-              'filter': ['==', 'location', symbol]
-            });
-          }
-          map.on('click', layerID, function(e) {
-            map.getCanvas().style.cursor = 'pointer';
-            var feature = e.features[0];
-            map.flyTo({ center: feature.geometry.coordinates, zoom: 15 });
-
-            new mapboxgl.Popup({closeButton: false})
-            .setLngLat(feature.geometry.coordinates)
-            .setText(feature.properties.name)
-            .addTo(map);
-          });
-
+  function renderListings(features) {
+    filterGroup.innerHTML = '';
+    if (features.length ) {
+      features.forEach(function(feature) {
+        var symbol = feature.properties['name'];
+        var layerID = symbol;
         var input = document.createElement('input');
         input.type = 'checkbox';
         input.id = layerID;
-        input.checked = true;
+        input.checked = false;
         filterGroup.appendChild(input);
 
         var label = document.createElement('label');
         label.setAttribute('for', layerID);
         label.textContent = symbol;
         filterGroup.appendChild(label);
+
         input.addEventListener('change', function(e){
-          map.setLayoutProperty(
-            layerID,
-            'visibility',
-            e.target.checked ? 'visible' : 'none'
-          );
+          var filterGroup = document.getElementById('filter-group');
+          var getInput = filterGroup.getElementsByTagName('input');
+          if(input.checked == true){
+          for(var i = 0; i < getInput.length; i++){
+            getInput[i].checked = false;
+          }
+          input.checked = true;
+        }
+          places.features.forEach(function(feature) {
+            var place = feature.properties;
+            if (place.fish.includes(layerID)){
+              map.setLayoutProperty(
+                place['location'],
+                'visibility',
+                e.target.checked ? 'visible' : 'none'
+                );
+              }
+          });
         });
+
+      });
+      filterGroup.parentNode.style.display = 'block';
+    }
+  }
+
+  function filterBy(month, features) {
+    places.features.forEach(function(feature) {
+      var place = feature.properties;
+      map.setLayoutProperty(
+        place['location'],
+        'visibility',
+        'none'
+        );
+    });
+
+    if (features.length) {
+      fishess = [];
+      fish.features.forEach(function(feature) {
+        if (feature.properties['month'].includes(months[month])) {
+          fishess.push(feature);
+        }
+
       });
     }
-  })
-  filterBy(0);
-  document
-  .getElementById('slider')
-  .addEventListener('input', function(e) {
-    var month = parseInt(e.target.value, 10);
-    filterBy(month);
+    document.getElementById('month').textContent = months[month];
+  }
+
+  function normalize(string) {
+    return string.trim().toLowerCase();
+  }
+
+
+    map.on('load', function() {
+
+        map.addSource('fishes', {
+           'type': 'geojson',
+           'data': fish
+         });
+       fish.features.forEach(function(feature) {
+         var symbol = feature.properties['name'];
+         var layerID = symbol;
+           map.addLayer({
+             'id': layerID,
+             'source': 'fishes',
+             'type': 'symbol',
+           });
+          });
+          filterBy(0, fish.features);
+          renderListings(fishess)
+
+       {% load static %}
+       map.loadImage('{% static "media/icon/food.png" %}', function(error, image) {
+          if (error) throw error;
+          if (!map.hasImage('border-image')) {
+           map.addImage('fishing-area', image);
+
+            map.addSource('areas', {
+              'type': 'geojson',
+              'data': places
+            });
+
+           places.features.forEach(function(feature) {
+             var symbol = feature.properties['location'];
+             var layerID = symbol;
+             if (!map.getLayer(layerID)) {
+               map.addLayer({
+                 'id': layerID,
+                 'type': 'symbol',
+                 'source': 'areas',
+                 'layout': {
+                   'icon-image': 'fishing-area',
+                   'icon-size': 0.1,
+                   'icon-padding': 0,
+                   'icon-allow-overlap': true,
+                   'visibility': 'none'
+                 },
+               });
+             }
+             map.on('click', layerID, function(e) {
+               map.getCanvas().style.cursor = 'pointer';
+               var feature = e.features[0];
+               map.flyTo({ center: feature.geometry.coordinates, zoom: 15 });
+
+               new mapboxgl.Popup({closeButton: false})
+               .setLngLat(feature.geometry.coordinates)
+               .setText(feature.properties.location)
+               .addTo(map);
+             });
+          });
+
+
+      document.getElementById('slider').addEventListener('input', function(e) {
+        var month = parseInt(e.target.value, 10);
+        var value = normalize(e.target.value);
+        filterBy(month, fish.features);
+        renderListings(fishess);
+     });
+     filterBy(0, fish.features);
+    }
   });
 });
 
@@ -246,8 +314,9 @@ map.addControl(
     trackUserLocation: true
   })
 );
-
-
-
 </script>
+
+
+
+
 {% endblock %}

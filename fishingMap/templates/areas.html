@@ -127,13 +127,7 @@
           map.flyTo({ center: feature.geometry.coordinates, zoom: 15 });
           popup
           .setLngLat(feature.geometry.coordinates)
-          .setText(
-          feature.properties.name +
-          ' (' +
-          feature.properties.district +
-          ')'
-          + feature.properties.fish
-          )
+          .setHTML(feature.properties.name + ' (' + feature.properties.district + ')'+ '<br>' + '這裡有：' + feature.properties.fish)
           .addTo(map);
         });
         listingEl.appendChild(item);
@@ -214,14 +208,10 @@
           ' (' +
           feature.properties.district +
           ')'
+          + feature.properties.fish
           )
           .addTo(map);
         });
-
-        /*map.on('mouseleave', 'location', function() {
-          map.getCanvas().style.cursor = '';
-          popup.remove();
-        });*/
 
         filterEl.addEventListener('keyup', function(e) {
           var value = normalize(e.target.value);
