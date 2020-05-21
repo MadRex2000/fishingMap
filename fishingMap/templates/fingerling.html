@@ -189,6 +189,16 @@
           }
           input.checked = true;
         }
+
+          places.features.forEach(function(feature) {
+            var place = feature.properties;
+            map.setLayoutProperty(
+              place['location'],
+              'visibility',
+              'none'
+              );
+          });
+
           places.features.forEach(function(feature) {
             var place = feature.properties;
             if (place.fish.includes(layerID)){
