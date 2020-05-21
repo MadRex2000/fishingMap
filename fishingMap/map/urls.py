@@ -3,6 +3,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 
+#url path that can path to html by urls
+
 urlpatterns = [
     path('', views.home, name = 'home'),
     path('fingerling/', views.fish, name = 'fingerling'),

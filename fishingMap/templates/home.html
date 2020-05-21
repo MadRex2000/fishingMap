@@ -1,7 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load i18n %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<style>
+
+  .map-overlay {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 10px;
+  }
+  .ml7 {
+    position: relative;
+    font-weight: 900;
+    font-size: 3.7em;
+  }
+  .ml7 .text-wrapper {
+    position: relative;
+    display: inline-block;
+    padding-top: 0.2em;
+    padding-right: 0.05em;
+    padding-bottom: 0.1em;
+    overflow: hidden;
+  }
+  .ml7 .letter {
+    transform-origin: 0 100%;
+    display: inline-block;
+    line-height: 1em;
+  }
+
+</style>
+
 <div id="map"></div>
+<div class="map-overlay">
+  <h1 class="ml7">
+  <span class="text-wrapper">
+    <span class="letters">魚 for map 選</span>
+  </span>
+</h1>
+<a href="{% url 'areas' %}"><button type="button" class="btn btn-primary"><h4>找釣點？</h4></button></a>
+<a href="{% url 'fingerling' %}"><button type="button" class="btn btn-primary"><h4>找魚？</h4></button></a>
+
+</div>
+
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoicmV4d3UxMTIzIiwiYSI6ImNrYTUyejVkdTBhcGkzaHFmN3RlZXBtZHcifQ.m9Ejwl41uqQfXxNP_H-6rw';
   var places = {
@@ -15,7 +58,7 @@
           'type': 'Point',
           'coordinates': [{{ area.lon }}, {{ area.lat }}]
         },
-          'properties': {'location': '{{ area.location }}', 'name': '{{ area.location }}',  'district': '{{ area.city }} {{ area.district }}', 'fish': '{{ area.fingerling_area.all }}'}
+          'properties': {'location': '{{ area.location }}'}
         },
         {% endfor %}
       {% endif %}
@@ -60,16 +103,34 @@
     }
   })
 });
+map.scrollZoom.disable();
+map.boxZoom.disable();
+map.dragRotate.disable();
+map.dragPan.disable();
+map.keyboard.disable();
+map.doubleClickZoom.disable();
+map.touchZoomRotate.disable();
 
-map.addControl(
-  new mapboxgl.GeolocateControl({
-    positionOptions: {
-      enableHighAccuracy: true
-    },
-    trackUserLocation: true
-  })
-);
+var textWrapper = document.querySelector('.ml7 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml7 .letter',
+    translateY: ["1.1em", 0],
+    translateX: ["0.55em", 0],
+    translateZ: 0,
+    rotateZ: [180, 0],
+    duration: 750,
+    easing: "easeOutExpo",
+    delay: (el, i) => 50 * i
+  }).add({
+    targets: '.ml7',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
 
 </script>
 {% endblock %}

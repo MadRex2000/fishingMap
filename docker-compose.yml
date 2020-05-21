@@ -1,0 +1,26 @@
+version: "3"
+services:
+  web:
+    build: .
+    container_name: fishingMap
+    hostname: fishingMap
+    entrypoint: ''
+    command:
+      - bash
+      - -c
+      - |
+        set -o errexit -o nounset -o pipefail
+        cd fishingMap
+        python3 manage.py compilemessages
+        python3 manage.py migrate
+        python3 manage.py collectstatic --no-input
+
+        exec uwsgi --http-socket :8000 \
+          --master \
+          --hook-master-start "unix_signal:15 gracefully_kill_them_all" \
+          --static-map /static=assets \
+          --static-map /media=media \
+          --mount /fishingMap/wsgi.py \
+          --manage-script-name \
+          --offload-threads 2
+    restart: always

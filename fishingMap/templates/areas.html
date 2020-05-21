@@ -66,6 +66,7 @@
 
 <div id="map"></div>
 <div class="map-overlay">
+  <a href="{% url 'home' %}"><button type="button" class="btn btn-primary"><h6>⬅︎回首頁</h6></button></a>
   <fieldset>
     <input
     id="feature-filter"
@@ -77,12 +78,12 @@
 </div>
 
 <script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoicmV4d3UxMTIzIiwiYSI6ImNrYTUyejVkdTBhcGkzaHFmN3RlZXBtZHcifQ.m9Ejwl41uqQfXxNP_H-6rw';
+
+	{% include 'mapapi.html'%}
+
   var places = {
     'type': 'FeatureCollection',
-    'features': [
-      {% if areas %}
-        {% for area in areas %}
+    'features': [{% if areas %}{% for area in areas %}
         {
         'type': 'Feature',
         'geometry': {
@@ -93,19 +94,14 @@
             'location': '{{ area.location }}',
             'name': '{{ area.location }}',
             'district': '{{ area.city }} {{ area.district }}',
-            'fish': [{% for branch in area.city.branches_city.all %}{% for fish in branch.fingerling_branch.all %}'{{ fish.name }}',{% endfor %}{% endfor %}]
+            'fish': [{% for branch in area.city.branches_city.all %}{% for fish in branch.fingerling_branch.all %}'{{ fish.name }}',{% endfor %}{% endfor %}],
+            'context': "{{ area.location }} ({{ area.city }} {{ area.district }})<br>會在這裡出沒的魚：<br><div style='height: 20%; overflow: auto;'>{% for branch in area.city.branches_city.all %}{% for fish in branch.fingerling_branch.all %}{{ fish.name }}, {% endfor %}{% endfor %}</div>"
           }
         },
-        {% endfor %}
-      {% endif %}
+        {% endfor %}{% endif %}
     ]
   };
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [121.741398, 25.131127],
-    zoom: 13
-  });
+
   var areas = [];
   var popup = new mapboxgl.Popup({
     closeButton: false
@@ -127,7 +123,7 @@
           map.flyTo({ center: feature.geometry.coordinates, zoom: 15 });
           popup
           .setLngLat(feature.geometry.coordinates)
-          .setHTML(feature.properties.name + ' (' + feature.properties.district + ')'+ '<br>' + '這裡有：' + feature.properties.fish)
+          .setHTML(feature.properties.context)
           .addTo(map);
         });
         listingEl.appendChild(item);
@@ -203,13 +199,7 @@
           map.flyTo({ center: feature.geometry.coordinates, zoom: 15 });
           popup
           .setLngLat(feature.geometry.coordinates)
-          .setText(
-          feature.properties.name +
-          ' (' +
-          feature.properties.district +
-          ')'
-          + feature.properties.fish
-          )
+          .setHTML(feature.properties.context)
           .addTo(map);
         });
 

@@ -7,12 +7,14 @@
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-weight: 600;
     position: absolute;
-    top: 125px;
+    top: 165px;
     left: 10px;
     z-index: 1;
     border-radius: 3px;
     width: 120px;
     color: #fff;
+    height: 75%;
+    overflow: auto;
   }
 
   .filter-group input[type='checkbox']:first-child + label {
@@ -99,15 +101,19 @@
 
 <div id="map"></div>
 <div class="map-overlay top">
+  <a href="{% url 'home' %}"><button type="button" class="btn btn-primary"><h6>⬅︎回首頁</h6></button></a>
   <div class="map-overlay-inner">
     <h2>找尋魚的蹤跡</h2>
     <label id="month"></label>
     <input id="slider" type="range" min="0" max="11" step="1" value="0" />
   </div>
 </div>
-<nav style="height: 75%; overflow: auto;" id="filter-group" class="filter-group"></nav>
+<nav id="filter-group" class="filter-group"></nav>
 <script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoicmV4d3UxMTIzIiwiYSI6ImNrYTUyejVkdTBhcGkzaHFmN3RlZXBtZHcifQ.m9Ejwl41uqQfXxNP_H-6rw';
+  var filterGroup = document.getElementById('filter-group');
+
+	{% include 'mapapi.html'%}
+
   var places = {
     'type': 'FeatureCollection',
     'features': [{% if areas %}{% for area in areas %}
@@ -156,13 +162,6 @@
   '十二月'
   ];
 
-  var filterGroup = document.getElementById('filter-group');
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [121.741398, 25.131127],
-    zoom: 13
-  });
 
   function renderListings(features) {
     filterGroup.innerHTML = '';
