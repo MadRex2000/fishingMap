@@ -10,5 +10,4 @@ urlpatterns = [
     path('fingerling/', views.fish, name = 'fingerling'),
     path('areas/', views.areas, name = 'areas'),
     path('tests/', views.tests, name = 'tests'),
-]
-'''+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)'''
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
