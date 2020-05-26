@@ -62,6 +62,21 @@
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   }
 
+  #features {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30%;
+    overflow: auto;
+    display: none;
+    background: rgba(255, 255, 255, 0.8);
+  }
+  
+  #map canvas {
+    cursor: crosshair;
+  }
+
 </style>
 
 <div id="map"></div>
@@ -76,6 +91,7 @@
   </fieldset>
   <div id="feature-listing" class="listing"></div>
 </div>
+<pre id="features"></pre>
 
 <script>
 
@@ -96,7 +112,7 @@
             'name': '{{ area.location }}',
             'district': '{{ area.city }} {{ area.district }}',
             'fish': [{% for branch in area.city.branches_city.all %}{% for fish in branch.fingerling_branch.all %}'{{ fish.name }}',{% endfor %}{% endfor %}],
-            'context': "{{ area.location }} ({{ area.city }} {{ area.district }})<br>會在這裡出沒的魚：<br><div style='height: 20%; overflow: auto;'>{% for branch in area.city.branches_city.all %}{{ branch.name }}, {% endfor %}</div>"
+            'context': "{{ area.location }} ({{ area.city }} {{ area.district }})<br>會在這裡出沒的魚：<br><div style='top: 10px; height: 100%; overflow: auto;'>{% for branch in area.city.branches_city.all %}{{ branch.name }}, <br>{% endfor %}</div>"
           }
         },
         {% endfor %}{% endif %}
@@ -234,15 +250,7 @@
       }
     });
 });
-  map.addControl(new mapboxgl.NavigationControl());
-  map.addControl(
-    new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true
-    })
-  );
+
 </script>
 
 
