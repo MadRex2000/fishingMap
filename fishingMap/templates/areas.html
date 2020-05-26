@@ -81,6 +81,7 @@
 
 	{% include 'mapapi.html'%}
 
+  //make fishing area imformation by iterate data from django SQLite database
   var places = {
     'type': 'FeatureCollection',
     'features': [{% if areas %}{% for area in areas %}
@@ -95,7 +96,7 @@
             'name': '{{ area.location }}',
             'district': '{{ area.city }} {{ area.district }}',
             'fish': [{% for branch in area.city.branches_city.all %}{% for fish in branch.fingerling_branch.all %}'{{ fish.name }}',{% endfor %}{% endfor %}],
-            'context': "{{ area.location }} ({{ area.city }} {{ area.district }})<br>會在這裡出沒的魚：<br><div style='height: 20%; overflow: auto;'>{% for branch in area.city.branches_city.all %}{% for fish in branch.fingerling_branch.all %}{{ fish.name }}, {% endfor %}{% endfor %}</div>"
+            'context': "{{ area.location }} ({{ area.city }} {{ area.district }})<br>會在這裡出沒的魚：<br><div style='height: 20%; overflow: auto;'>{% for branch in area.city.branches_city.all %}{{ branch.name }}, {% endfor %}</div>"
           }
         },
         {% endfor %}{% endif %}
@@ -110,6 +111,7 @@
   var filterEl = document.getElementById('feature-filter');
   var listingEl = document.getElementById('feature-listing');
 
+  //filter by window and display maker in map
   function renderListings(features) {
     var empty = document.createElement('p');
     listingEl.innerHTML = '';
@@ -123,8 +125,10 @@
           map.flyTo({ center: feature.geometry.coordinates, zoom: 15 });
           popup
           .setLngLat(feature.geometry.coordinates)
-          .setHTML(feature.properties.context)
+          .setHTML(feature.properties.name + ' (' + feature.properties.district + ')')
           .addTo(map);
+          document.getElementById('features').innerHTML = feature.properties.context;
+          document.getElementById('features').style.display = 'block';
         });
         listingEl.appendChild(item);
       });
@@ -165,6 +169,7 @@
            if (!map.hasImage('border-image')) {
 
             map.addImage('fishing-area', image);
+            //setup areas maker in map
             map.addSource('areas', {
               'type': 'geojson',
               'data': places
@@ -181,7 +186,7 @@
 
               }
             });
-
+        //setup something to listening user's action
         map.on('moveend', function() {
           var features = map.queryRenderedFeatures({ layers: ['location'] });
 
@@ -199,8 +204,10 @@
           map.flyTo({ center: feature.geometry.coordinates, zoom: 15 });
           popup
           .setLngLat(feature.geometry.coordinates)
-          .setHTML(feature.properties.context)
+          .setHTML(feature.properties.name + ' (' + feature.properties.district + ')')
           .addTo(map);
+          document.getElementById('features').innerHTML = feature.properties.context;
+          document.getElementById('features').style.display = 'block';
         });
 
         filterEl.addEventListener('keyup', function(e) {
@@ -227,6 +234,7 @@
       }
     });
 });
+  map.addControl(new mapboxgl.NavigationControl());
   map.addControl(
     new mapboxgl.GeolocateControl({
       positionOptions: {

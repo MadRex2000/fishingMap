@@ -114,6 +114,7 @@
 
 	{% include 'mapapi.html'%}
 
+  //make fishing area imformation by iterate data from django SQLite database
   var places = {
     'type': 'FeatureCollection',
     'features': [{% if areas %}{% for area in areas %}
@@ -132,6 +133,7 @@
     ]
   };
 
+  //make fish imforation by iterate data from django SQLite database
   var fish = {
     'type': 'FeatureCollection',
     'features': [{% if fingerling %}{% for fish in fingerling %}
@@ -162,7 +164,7 @@
   '十二月'
   ];
 
-
+  //filter by fingerling and display maker in map
   function renderListings(features) {
     filterGroup.innerHTML = '';
     if (features.length ) {
@@ -216,6 +218,7 @@
     }
   }
 
+  //filter by month and display in fingerling list
   function filterBy(month, features) {
     places.features.forEach(function(feature) {
       var place = feature.properties;
@@ -244,7 +247,7 @@
 
 
     map.on('load', function() {
-
+        //setup fingerling imformation in map
         map.addSource('fishes', {
            'type': 'geojson',
            'data': fish
@@ -266,7 +269,7 @@
           if (error) throw error;
           if (!map.hasImage('border-image')) {
            map.addImage('fishing-area', image);
-
+           //setup areas maker in map
             map.addSource('areas', {
               'type': 'geojson',
               'data': places
@@ -289,6 +292,7 @@
                  },
                });
              }
+             //setup something to listening user's action
              map.on('click', layerID, function(e) {
                map.getCanvas().style.cursor = 'pointer';
                var feature = e.features[0];

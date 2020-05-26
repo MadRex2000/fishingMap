@@ -46,7 +46,8 @@
 </div>
 
 <script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoicmV4d3UxMTIzIiwiYSI6ImNrYTUyejVkdTBhcGkzaHFmN3RlZXBtZHcifQ.m9Ejwl41uqQfXxNP_H-6rw';
+
+  //make fishing area by iterate data from django SQLite database
   var places = {
     'type': 'FeatureCollection',
     'features': [
@@ -64,13 +65,10 @@
       {% endif %}
     ]
   };
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [121.741398, 25.131127],
-    zoom: 10
-  });
 
+  {% include 'mapapi.html'%}
+
+  //setup areas maker in map
   map.on('load', function() {
     {% load static %}
     map.loadImage('{% static "media/icon/food.png" %}', function(error, image) {
@@ -103,6 +101,7 @@
     }
   })
 });
+//disable map's function
 map.scrollZoom.disable();
 map.boxZoom.disable();
 map.dragRotate.disable();
@@ -111,6 +110,7 @@ map.keyboard.disable();
 map.doubleClickZoom.disable();
 map.touchZoomRotate.disable();
 
+//let the title move
 var textWrapper = document.querySelector('.ml7 .letters');
 textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
 
