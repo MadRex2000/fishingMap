@@ -1,0 +1,1 @@
+<h4>{{ area.location }} ({{ area.city }} {{ area.district }})</h4>會在這裡出沒的魚：<br><div style='top: 10px; height: 100%; overflow: auto;'>{% for branch in area.city.branches_city.all %}{{ branch.name }}, <br>{% endfor %}</div>\

@@ -72,7 +72,7 @@
     display: none;
     background: rgba(255, 255, 255, 0.8);
   }
-  
+
   #map canvas {
     cursor: crosshair;
   }
@@ -112,7 +112,7 @@
             'name': '{{ area.location }}',
             'district': '{{ area.city }} {{ area.district }}',
             'fish': [{% for branch in area.city.branches_city.all %}{% for fish in branch.fingerling_branch.all %}'{{ fish.name }}',{% endfor %}{% endfor %}],
-            'context': "{{ area.location }} ({{ area.city }} {{ area.district }})<br>會在這裡出沒的魚：<br><div style='top: 10px; height: 100%; overflow: auto;'>{% for branch in area.city.branches_city.all %}{{ branch.name }}, <br>{% endfor %}</div>"
+            'context': "{% include 'areas_fish_context.html'%}"
           }
         },
         {% endfor %}{% endif %}

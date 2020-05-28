@@ -12,34 +12,13 @@
     left: 0;
     padding: 10px;
   }
-  .ml7 {
-    position: relative;
-    font-weight: 900;
-    font-size: 3.7em;
-  }
-  .ml7 .text-wrapper {
-    position: relative;
-    display: inline-block;
-    padding-top: 0.2em;
-    padding-right: 0.05em;
-    padding-bottom: 0.1em;
-    overflow: hidden;
-  }
-  .ml7 .letter {
-    transform-origin: 0 100%;
-    display: inline-block;
-    line-height: 1em;
-  }
+
 
 </style>
 
 <div id="map"></div>
 <div class="map-overlay">
-  <h1 class="ml7">
-  <span class="text-wrapper">
-    <span class="letters">魚 for map 選</span>
-  </span>
-</h1>
+<h1>魚 for map 選</h1>
 <a href="{% url 'areas' %}"><button type="button" class="btn btn-primary"><h4>找釣點？</h4></button></a>
 <a href="{% url 'fingerling' %}"><button type="button" class="btn btn-primary"><h4>找魚？</h4></button></a>
 
@@ -109,28 +88,6 @@ map.dragPan.disable();
 map.keyboard.disable();
 map.doubleClickZoom.disable();
 map.touchZoomRotate.disable();
-
-//let the title move
-var textWrapper = document.querySelector('.ml7 .letters');
-textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-
-anime.timeline({loop: true})
-  .add({
-    targets: '.ml7 .letter',
-    translateY: ["1.1em", 0],
-    translateX: ["0.55em", 0],
-    translateZ: 0,
-    rotateZ: [180, 0],
-    duration: 750,
-    easing: "easeOutExpo",
-    delay: (el, i) => 50 * i
-  }).add({
-    targets: '.ml7',
-    opacity: 0,
-    duration: 1000,
-    easing: "easeOutExpo",
-    delay: 1000
-  });
 
 </script>
 {% endblock %}
