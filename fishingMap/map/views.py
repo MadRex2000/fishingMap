@@ -8,7 +8,8 @@ def home(request):
 def fish(request):
     areas = area.objects.all()
     fishes = fingerling.objects.all()
-    return render(request, 'fingerling.html', {'areas': areas, 'fingerling': fishes})
+    branch = branches.objects.all()
+    return render(request, 'fingerling.html', {'areas': areas, 'fingerling': fishes, 'branches': branch,})
 
 def areas(request):
     areas = area.objects.all()
