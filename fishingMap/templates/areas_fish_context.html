@@ -1,1 +1,12 @@
-<h4>{{ area.location }} ({{ area.city }} {{ area.district }})</h4>會在這裡出沒的魚：<br><div style='top: 10px; height: 100%; overflow: auto;'>{% for branch in area.city.branches_city.all %}{{ branch.name }}, <br>{% endfor %}</div>\
+<div class='card bg-transparent border-0'>\
+    <div class='card-body'>\
+        <h4 class='card-title text-center text-primary'>{{ area.location }}</h4>\
+        <h5 class='card-subtitle text-secondary text-center'>{{ area.city }} {{ area.district }}</h5>\
+        <h6 class='card-header text-center'>會在這裡出沒的魚</h6>\
+        <ul class='list-group list-group-flush'>\
+            {% for branch in area.city.branches_city.all %}\
+            <li class='list-group-item bg-transparent'> {{ branch.name }}</li>\
+            {% endfor %}\
+        </ul>\
+    </div>\
+</div>\

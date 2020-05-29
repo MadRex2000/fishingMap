@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import area, fingerling
+from .models import area, fingerling, branches
 
 def home(request):
     areas = area.objects.all()
@@ -17,4 +17,5 @@ def areas(request):
 def tests(request):
     areas = area.objects.all()
     fishes = fingerling.objects.all()
-    return render(request, 'test.html', {'areas': areas, 'fingerling': fishes})
+    branch = branches.objects.all()
+    return render(request, 'test.html', {'areas': areas, 'fingerling': fishes, 'branches': branch,})

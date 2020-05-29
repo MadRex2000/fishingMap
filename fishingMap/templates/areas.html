@@ -3,10 +3,20 @@
 {% block content %}
 {% load i18n %}
 <style>
-  .map-overlay {
+  .map-lay {
     position: absolute;
     width: 25%;
     top: 10px;
+    left: 16px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    background-color: rgba(255,255,255,0);
+    max-height: 100%;
+    overflow: hidden;
+  }
+  .map-overlay {
+    position: absolute;
+    width: 25%;
+    top: 60px;
     left: 16px;
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     background-color: rgba(255,255,255,0.7);
@@ -80,8 +90,11 @@
 </style>
 
 <div id="map"></div>
-<div class="map-overlay">
+<div class="map-lay">
   <a href="{% url 'home' %}"><button type="button" class="btn btn-primary"><h6>⬅︎回首頁</h6></button></a>
+
+</div>
+<div class="map-overlay">
   <fieldset>
     <input
     id="feature-filter"
