@@ -3,26 +3,7 @@
 {% block content %}
 {% load i18n %}
 <style>
-  .map-lay {
-    position: absolute;
-    width: 15%;
-    top: 10px;
-    left: 16px;
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    background-color: rgba(255,255,255,0);
-    max-height: 100%;
-    overflow: hidden;
-  }
-  .map-overlay {
-    position: absolute;
-    width: 15%;
-    top: 60px;
-    left: 16px;
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    background-color: rgba(255,255,255,0.7);
-    max-height: 100%;
-    overflow: hidden;
-  }
+  
 
   .map-overlay fieldset {
     display: none;
@@ -72,29 +53,219 @@
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   }
 
-  #features {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 25%;
-    overflow: auto;
-    display: none;
-    background: rgba(255, 255, 255, 0.8);
-  }
-
   #map canvas {
     cursor: crosshair;
   }
 
+  @media screen and (orientation: portrait){
+
+    .map-overlay {
+      position: absolute;
+      top: 1%;
+      right: 2%;
+      width: 40%;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background-color: rgba(255,255,255,0.7);
+      overflow: auto;
+    }
+
+    .map-lay {
+      position: absolute;
+      top: 1%;
+      left: 2%;
+      width: 30%;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background-color: rgba(255,255,255,0);
+      overflow: hidden;
+    }
+
+    #features {
+      position: absolute;
+      top: 70%;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      overflow: auto;
+      display: none;
+      background: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  @media screen and (orientation: landscape) {
+    
+    .map-overlay {
+      position: absolute;
+      left: 1%;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background-color: rgba(255,255,255,0.7);
+      overflow: auto;
+    }
+    
+    .map-lay {
+      position: absolute;
+      width: 30%;
+      top: 2%;
+      left: 1%;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background-color: rgba(255,255,255,0);
+      overflow: hidden;
+    }
+
+    #features {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 35%;
+      overflow: auto;
+      display: none;
+      background: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  @media screen and (orientation: portrait) and (max-width: 568px) {
+    
+    .map-overlay {
+      max-height: 60%;
+      font-size: small;
+    }
+  }
+
+  @media screen and (orientation: landscape) and (max-width: 568px) {
+    .map-overlay {
+      width: 25%;
+      max-height: 70%;
+      font-size: small;
+      top: 16%;
+    }
+    
+    .card-title {
+      font-size: medium;
+    }
+    .card-subtitle {
+      font-size: small;
+    }
+    .card-header {
+      font-size: small;
+    }
+  }
+  @media screen and (orientation: portrait) and (min-width: 569px) and (max-width: 1023px) {
+    
+    .map-overlay {
+      max-height: 50%;
+      font-size: medium;
+    }
+  }
+  @media screen and (orientation: landscape) and (min-width: 569px) and (max-width: 1023px) {
+    
+    .map-overlay {
+      width: 25%;
+      max-height: 70%;
+      font-size: medium;
+      top: 16%; 
+    }
+  }
+  
+  @media screen and (orientation: portrait) and (min-width: 1024px) {
+    .map-overlay {
+      max-height: 50%;
+      font-size: large;
+      width: 30%;
+    }
+  }
+
+  @media screen and (orientation: landscape) and (min-width: 1024px) {
+    .map-overlay {
+      width: 20%;
+      max-height: 70%;
+      font-size: large;
+      top: 8%;
+    }
+    #features {
+      width: 30%;
+    }
+  }
+  /*
+  @media (min-width: 400px) and (max-width: 811px){
+    .map-overlay {
+      position: absolute;
+      width: 35%;
+      top: 10px;
+      right: 10px;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background-color: rgba(255,255,255,0.7);
+      max-height: 50%;
+      overflow: auto;
+      font-size: medium;
+    }
+
+    .map-lay {
+      position: absolute;
+      width: 40%;
+      top: 10px;
+      left: 10px;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background-color: rgba(255,255,255,0);
+      max-height: 100%;
+      overflow: hidden;
+    }
+
+    #features {
+      position: absolute;
+      top: 65%;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      overflow: auto;
+      display: none;
+      background: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  @media (min-width: 812px){
+    .map-overlay {
+      position: absolute;
+      width: 15%;
+      top: 60px;
+      left: 16px;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background-color: rgba(255,255,255,0.7);
+      max-height: 80%;
+      overflow: auto;
+      font-size: large;
+    }
+
+    .map-lay {
+      position: absolute;
+      width: 15%;
+      top: 10px;
+      left: 16px;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background-color: rgba(255,255,255,0);
+      max-height: 100%;
+      overflow: hidden;
+    }
+    #features {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 25%;
+      overflow: auto;
+      display: none;
+      background: rgba(255, 255, 255, 0.8);
+    }
+  }
+*/
 </style>
 
 <div id="map"></div>
 <div class="map-lay">
   <a href="{% url 'home' %}"><button type="button" class="btn btn-primary"><h6>⬅︎回首頁</h6></button></a>
-
 </div>
-<div class="map-overlay">
+<div class="map-overlay rounded-lg">
   <fieldset>
     <input
     id="feature-filter"
@@ -104,7 +275,7 @@
   </fieldset>
   <div id="feature-listing" class="listing"></div>
 </div>
-<pre id="features"></pre>
+<pre id="features" class="rounded-lg"></pre>
 
 <script>
 

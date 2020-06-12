@@ -2,6 +2,12 @@
 {% block content %}
 {% load i18n %}
 <style>
+  body {
+    overflow: hidden;
+    background: url(static/media/indexImgTransparency.jpg) center center fixed no-repeat;
+    background-size: cover;
+  }
+
   .container {
     position: relative;
   }
@@ -14,26 +20,89 @@
     font-size: 18px;
   }
 
+
+  .row {
+    margin: 20px;
+  }
+  
   img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 100%;
     opacity: 0.3;
   }
 
-  div.font {
-    font-size: 500%;
+
+  /* xs - Extra small devices (portrait phones, less than 576px) */
+  @media (max-width: 575.98px) { 
+    div.font {
+      font-size: 90%;
+    }
+
+    div.btn-font {
+      font-size: 75%;
+    }
   }
 
-  div.btn-font {
-    font-size: 300%;
+  /* sm - Small devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) and (max-width: 767.98px) { 
+    div.font {
+      font-size: 175%;
+    }
+
+    div.btn-font {
+      font-size: 150%;
+    }
+  }
+
+  /* md - Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    div.font {
+      font-size: 255%;
+    }
+
+    div.btn-font {
+      font-size: 175%;
+    }
+  }
+
+  /* lg - Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) and (max-width: 1199.98px) { 
+    div.font {
+      font-size: 350%;
+    }
+
+    div.btn-font {
+      font-size: 275%;
+    }
+  }
+
+  /* xl - Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) { 
+    div.font {
+      font-size: 430%;
+    }
+
+    div.btn-font {
+      font-size: 300%;
+    }
   }
 
 </style>
-  <img src="static/media/indexImg.JPG" alt="Cinque Terre">
-  <div class="center">
-    <div class="font">魚 for map 選</div>
-    <a href="{% url 'areas' %}"><button type="button" class="btn btn-primary btn-lg"><div class="btn-font">找釣點？</div></button></a>
-    <a href="{% url 'fingerling' %}"><button type="button" class="btn btn-primary btn-lg"><div class="btn-font">找魚？</div></button></a>
-  </div>
+
+<div class="contianer-fluid center">
+    <div class="row">
+      <button class="col text-center btn btn-primary btn-lg btn-block rounded-pill" disabled><div class="font">魚 for map 選</div></button>
+    </div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row">
+      <a href="{% url 'areas' %}" class="btn btn-outline-primary btn-lg btn-block rounded-pill" role="button"><div class="btn-font">找釣點？</div></a>
+    </div>
+    <div class="row">
+      <a href="{% url 'fingerling' %}" class="btn btn-outline-primary btn-lg btn-block rounded-pill" role="button"><div class="btn-font">找魚？</div></a>
+    </div>
+</div>
 
 {% endblock %}
