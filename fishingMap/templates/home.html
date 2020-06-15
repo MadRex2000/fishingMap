@@ -24,7 +24,7 @@
   .row {
     margin: 20px;
   }
-  
+
   img {
     width: auto;
     height: 100%;
@@ -33,7 +33,7 @@
 
 
   /* xs - Extra small devices (portrait phones, less than 576px) */
-  @media (max-width: 575.98px) { 
+  @media (max-width: 575.98px) {
     div.font {
       font-size: 90%;
     }
@@ -44,7 +44,7 @@
   }
 
   /* sm - Small devices (landscape phones, 576px and up) */
-  @media (min-width: 576px) and (max-width: 767.98px) { 
+  @media (min-width: 576px) and (max-width: 767.98px) {
     div.font {
       font-size: 175%;
     }
@@ -66,7 +66,7 @@
   }
 
   /* lg - Large devices (desktops, 992px and up) */
-  @media (min-width: 992px) and (max-width: 1199.98px) { 
+  @media (min-width: 992px) and (max-width: 1199.98px) {
     div.font {
       font-size: 350%;
     }
@@ -77,7 +77,7 @@
   }
 
   /* xl - Extra large devices (large desktops, 1200px and up) */
-  @media (min-width: 1200px) { 
+  @media (min-width: 1200px) {
     div.font {
       font-size: 430%;
     }
@@ -102,6 +102,9 @@
     </div>
     <div class="row">
       <a href="{% url 'fingerling' %}" class="btn btn-outline-primary btn-lg btn-block rounded-pill" role="button"><div class="btn-font">找魚？</div></a>
+    </div>
+    <div class="row">
+      <a href="{% url 'report' %}" class="btn btn-outline-primary btn-lg btn-block rounded-pill" role="button"><div class="btn-font">回報魚訊</div></a>
     </div>
 </div>
 

@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 
-#setup models and can migrate to sqlite database 
+#setup models and can migrate to sqlite database
 
 class city(models.Model):
     CITY_CHOICES = (
@@ -58,18 +59,16 @@ class monthChoices(models.Model):
 
 
 class area(models.Model):
-    id = models.AutoField(primary_key=True)
     location = models.CharField(blank = True, max_length = 100)
-    lat = models.FloatField(verbose_name = 'Latitude')
-    lon = models.FloatField(verbose_name = 'Longitude')
-    city = models.ForeignKey('city', related_name = 'area_city', verbose_name = '縣市', on_delete=models.CASCADE)
+    lat = models.FloatField(verbose_name = 'Latitude', null = True)
+    lon = models.FloatField(verbose_name = 'Longitude', null = True)
+    city = models.ForeignKey('city', related_name = 'area_city', verbose_name = '縣市', on_delete = models.CASCADE)
     district = models.CharField(blank = True, max_length = 100, verbose_name = '行政區')
 
     def __str__(self):
         return str(self.location)
 
 class branches(models.Model):
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length = 100, verbose_name = '科名')
     city = models.ManyToManyField('city', related_name = 'branches_city', verbose_name = '區域')
     month = models.ManyToManyField('monthChoices', verbose_name = '月份')
@@ -78,10 +77,14 @@ class branches(models.Model):
         return str(self.name)
 
 class fingerling(models.Model):
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length = 100, verbose_name = '名稱')
     nickname = models.CharField(max_length = 100, verbose_name = '俗名')
-    branch = models.ForeignKey('branches', related_name = 'fingerling_branch', verbose_name = '科別', on_delete=models.CASCADE)
+    branch = models.ForeignKey('branches', related_name = 'fingerling_branch', verbose_name = '科別', on_delete= models.CASCADE)
 
     def __str__(self):
         return str(self.name)
+
+class fishingStatus(models.Model):
+    fish = models.ForeignKey('fingerling', related_name = 'fishingStatus_fingerling', verbose_name = '魚種', on_delete = models.CASCADE)
+    area = models.ForeignKey('area', related_name = 'fishingStatus_area', verbose_name = '地點', on_delete = models.CASCADE)
+    time = models.DateTimeField(verbose_name = '時間', default = timezone.now)
