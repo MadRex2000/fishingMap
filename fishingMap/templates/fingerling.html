@@ -3,19 +3,6 @@
 {% block content %}
 {% load i18n %}
 <style>
-  .filter-group {
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    font-weight: 600;
-    position: absolute;
-    top: 165px;
-    left: 10px;
-    z-index: 1;
-    border-radius: 3px;
-    width: 120px;
-    color: #fff;
-    height: 75%;
-    overflow: auto;
-  }
 
   .filter-group input[type='checkbox']:first-child + label {
     border-radius: 3px 3px 0 0;
@@ -59,15 +46,6 @@
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   }
 
-  .map-overlay {
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    position: absolute;
-    width: 15%;
-    top: 0;
-    left: 0;
-    padding: 10px;
-  }
-
   .map-overlay .map-overlay-inner {
     background-color: #fff;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -97,26 +75,290 @@
     cursor: ew-resize;
   }
 
-  #features {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 25%;
-    overflow: auto;
-    display: none;
-    background: rgba(255, 255, 255, 0.8);
-  }
-
   #map canvas {
     cursor: crosshair;
   }
 
+  @media screen and (orientation: portrait){
+
+    .map-lay {
+      position: absolute;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      overflow: hidden;
+      max-height: 100%;
+      background-color: rgba(255, 255, 255, 0);
+      top: 1%;
+      left: 2%;
+    }
+    
+    .map-overlay {
+      position: absolute;
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      right: 2%;
+      top: 1%;
+    }
+
+    .map-overlay h2 {
+      display: block;
+      margin: 0 0 10px;
+      line-height: 24px;
+    }
+
+    .filter-group {
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      font-weight: 600;
+      position: absolute;
+      right: 2%;
+      z-index: 1;
+      border-radius: 3px;
+      color: #fff;
+      overflow: auto;
+    }
+
+    #features {
+      position: absolute;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      display: none;
+      overflow: auto;
+      background: rgba(255, 255, 255, 0.8);
+      top: 70%;
+    }
+  }
+
+  @media screen and (orientation: landscape) {
+
+    .map-lay {
+      position: absolute;
+      width: 25%;
+      top: 2%;
+      left: 1%;
+      font: 12px/24px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background-color: rgba(255,255,255,0);
+      max-height: 100%;
+      overflow: hidden;
+    }
+
+    .map-overlay {
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      position: absolute;
+      left: 1%;
+    }
+
+    .map-overlay h2 {
+      display: block;
+      margin: 0 0 10px;
+    }
+
+    .filter-group {
+      font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      font-weight: 600;
+      position: absolute;
+      left: 1%;
+      z-index: 1;
+      border-radius: 3px;
+      color: #fff;
+      overflow: auto;
+    }
+
+    #features {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      overflow: auto;
+      display: none;
+      background: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  @media screen and (orientation: portrait) and (max-width: 568px){
+
+    .map-lay {
+      width: 40%;
+    }
+
+    .map-overlay {
+      width: 50%;
+    }
+
+    .map-overlay h2 {
+      font-size: medium;
+    }
+    
+    .map-overlay h4 {
+      font-size: small;
+    }
+
+    .filter-group {
+      top: 18%;
+      width: 75px;
+      max-height: 50%;
+    }
+  }
+
+  
+  @media screen and (orientation: landscape) and (max-width: 568px){
+    .map-lay {
+      font-size: small;
+    }
+
+    .map-overlay {
+      width: 25%;
+      top: 16%;
+    }
+
+    .map-overlay h2 {
+      line-height: 12px;
+      font-size: small;
+    }
+    
+    .map-overlay h4 {
+      font-size: x-small;
+    }
+    
+    .filter-group {
+      top: 42%;
+      width: 15%;
+      max-height: 50%;
+      font-size: x-small;
+    }
+
+    .card-title {
+      font-size: medium;
+    }
+    .card-subtitle {
+      font-size: small;
+    }
+    .card-header {
+      font-size: small;
+    }
+
+    #features {
+      width: 35%;
+    }
+  }
+ 
+  @media (min-width: 569px) and (max-width: 1023px) and (orientation: portrait){
+
+    .map-lay {
+      width: 40%;
+    }
+    
+    .map-overlay {
+      width: 35%;
+    }
+
+    .map-overlay h2 {
+      font-size: medium;
+    }
+    
+    .map-overlay h4 {
+      font-size: small;
+    }
+
+    .filter-group {
+      top: 12%;
+      width: 75px;
+      max-height: 50%;
+      font-size: small;
+    }
+  }
+  
+  @media (min-width: 569px) and (max-width: 1023px) and (orientation: landscape){
+
+    .map-overlay {
+      width: 25%;
+      top: 14%;
+    }
+
+    .map-overlay h2 {
+      line-height: 24px;
+      font-size: medium;
+    }
+    
+    .map-overlay h4 {
+      font-size: small;
+    }
+    
+    .filter-group {
+      top: 40%;
+      width: 15%;
+      max-height: 50%;
+      font-size: small;
+    }
+    
+    #features {
+      width: 30%;
+    }
+  }
+
+  @media screen and (min-width: 1024px) and (orientation: portrait){
+
+    .map-lay {
+      width: 15%;
+    }
+
+    .map-overlay {
+      width: 20%;
+    }
+
+    .map-overlay h2 {
+      font-size: x-large;
+    }
+    
+    .map-overlay h4 {
+      font-size: large;
+    }
+    
+    .filter-group {
+      top: 9%;
+      width: 10%;
+      max-height: 60%;
+      font-size: large;
+    }
+  }
+
+  @media screen and (min-width: 1024px) and (orientation: landscape){
+
+    .map-overlay {
+      width: 20%;
+      top: 8%;
+    }
+
+    .map-overlay h2 {
+      line-height: 24px;
+      font-size: x-large;
+    }
+    
+    .map-overlay h4 {
+      font-size: large;
+    }
+    
+    .filter-group {
+      top: 22%;
+      width: 10%;
+      max-height: 70%;
+      font-size: large;
+    }
+
+    #features {
+      width: 25%;
+    }
+  }
+
+
+  
+
 </style>
 
 <div id="map"></div>
-<div class="map-overlay top">
+<div class="map-lay">
   <a href="{% url 'home' %}"><button type="button" class="btn btn-primary"><h6>⬅︎回首頁</h6></button></a>
+</div>
+<div class="map-overlay top rounded-lg">
   <div class="map-overlay-inner">
     <h2 class='card-title text-center text-primary'>找尋魚的蹤跡</h2>
     <h4 class='card-subtitle text-secondary text-center'><label id="month"></label></h4>
@@ -124,7 +366,7 @@
   </div>
 </div>
 <nav id="filter-group" class="filter-group"></nav>
-<pre id="features"></pre>
+<pre id="features" class="rounded-lg"></pre>
 
 <script>
   var filterGroup = document.getElementById('filter-group');
