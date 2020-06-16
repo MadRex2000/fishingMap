@@ -10,7 +10,8 @@ def fish(request):
     areas = area.objects.all()
     fishes = fingerling.objects.all()
     branch = branches.objects.all()
-    return render(request, 'fingerling.html', {'areas': areas, 'fingerling': fishes, 'branches': branch,})
+    status = fishingStatus.objects.all()
+    return render(request, 'fingerling.html', {'areas': areas, 'fingerling': fishes, 'branches': branch, 'status': status,})
 
 def areas(request):
     areas = area.objects.all()
@@ -20,7 +21,8 @@ def tests(request):
     areas = area.objects.all()
     fishes = fingerling.objects.all()
     branch = branches.objects.all()
-    return render(request, 'test.html', {'areas': areas, 'fingerling': fishes, 'branches': branch,})
+    status = fishingStatus.objects.all()
+    return render(request, 'test.html', {'areas': areas, 'fingerling': fishes, 'branches': branch, 'status': status,})
 
 def fishingStatusReport(request):
     if request.method == "POST":
