@@ -8,36 +8,36 @@
     background: url(../static/media/indexImgTransparency.jpg) center center fixed no-repeat;
     background-size: cover;
   }
-  
+
   .vertical-center {
     min-height: 100vh;
     display: flex;
     align-items: center;
     min-width: 100%;
   }
-  
+
   form {
     display: block;
     background-color: rgba(11, 13, 24, 0.3);
     padding: 30px;
   }
-  
+
   label {
     color: white;
   }
- 
+
   .home {
     position: absolute;
     overflow: hidden;
     margin: 10px;
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   }
-  
+
   .container h2 {
     color: white;
     margin-bottom: 1em;
   }
- 
+
 </style>
 
 <div class="home">
@@ -63,6 +63,11 @@
 <script>
   $("p").addClass("form-group col");
   $("input, select").addClass("form-control rounded-lg");
+  $(function () {
+    $("#id_pub_date").datetimepicker( {
+       format:'Y-m-d H:i',
+    });
+  });
 </script>
 
 {% endblock %}
