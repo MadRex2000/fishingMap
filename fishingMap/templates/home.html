@@ -8,104 +8,70 @@
     background-size: cover;
   }
 
-  .container {
-    position: relative;
-  }
-
-  .center {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-  }
-
-
-  .row {
-    margin: 20px;
-  }
-
   img {
     width: auto;
     height: 100%;
     opacity: 0.3;
   }
+  
+  .vertical-center {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    min-width: 100%;
+    overflow: auto;
+  }
 
-
-  /* xs - Extra small devices (portrait phones, less than 576px) */
-  @media (max-width: 575.98px) {
+  .container {
+    width: 70%;
+    overflow: auto;
+  }
+  
+  .row {
+    margin: 20px;
+  }
+ 
+  @media screen and (orientation: portrait) {
     div.font {
-      font-size: 90%;
+      font-size: 7vw;
     }
-
     div.btn-font {
-      font-size: 75%;
+      font-size: 6vw;
+    }
+    #title-text {
+      margin-bottom: 10vw;
     }
   }
 
-  /* sm - Small devices (landscape phones, 576px and up) */
-  @media (min-width: 576px) and (max-width: 767.98px) {
+  @media screen and (orientation: landscape) {
     div.font {
-      font-size: 175%;
+      font-size: 8vh;
     }
-
     div.btn-font {
-      font-size: 150%;
+      font-size: 7vh;
     }
-  }
-
-  /* md - Medium devices (tablets, 768px and up) */
-  @media (min-width: 768px) and (max-width: 991.98px) {
-    div.font {
-      font-size: 255%;
-    }
-
-    div.btn-font {
-      font-size: 175%;
-    }
-  }
-
-  /* lg - Large devices (desktops, 992px and up) */
-  @media (min-width: 992px) and (max-width: 1199.98px) {
-    div.font {
-      font-size: 350%;
-    }
-
-    div.btn-font {
-      font-size: 275%;
-    }
-  }
-
-  /* xl - Extra large devices (large desktops, 1200px and up) */
-  @media (min-width: 1200px) {
-    div.font {
-      font-size: 430%;
-    }
-
-    div.btn-font {
-      font-size: 300%;
+    #title-text {
+      margin-bottom: 10vh;
     }
   }
 
 </style>
 
-<div class="contianer-fluid center">
-    <div class="row">
-      <button class="col text-center btn btn-primary btn-lg btn-block rounded-pill" disabled><div class="font">魚 for map 選</div></button>
-    </div>
-    <div class="row"></div>
-    <div class="row"></div>
-    <div class="row"></div>
-    <div class="row"></div>
-    <div class="row">
-      <a href="{% url 'areas' %}" class="btn btn-outline-primary btn-lg btn-block rounded-pill" role="button"><div class="btn-font">找釣點？</div></a>
-    </div>
-    <div class="row">
-      <a href="{% url 'fingerling' %}" class="btn btn-outline-primary btn-lg btn-block rounded-pill" role="button"><div class="btn-font">找魚？</div></a>
-    </div>
-    <div class="row">
-      <a href="{% url 'report' %}" class="btn btn-outline-primary btn-lg btn-block rounded-pill" role="button"><div class="btn-font">回報魚訊</div></a>
-    </div>
+<div class="vertical-center">
+  <div class="container">
+      <div class="row" id="title-text">
+        <button class="text-center btn btn-primary btn-lg btn-block rounded-pill" disabled><div class="font">魚 for map 選</div></button>
+      </div>
+      <div class="row">
+        <a href="{% url 'areas' %}" class="btn btn-outline-primary btn-lg btn-block rounded-pill" role="button"><div class="btn-font">找釣點？</div></a>
+      </div>
+      <div class="row">
+        <a href="{% url 'fingerling' %}" class="btn btn-outline-primary btn-lg btn-block rounded-pill" role="button"><div class="btn-font">找魚？</div></a>
+      </div>
+      <div class="row">
+        <a href="{% url 'report' %}" class="btn btn-outline-primary btn-lg btn-block rounded-pill" role="button"><div class="btn-font">回報魚訊</div></a>
+      </div>
+  </div>
 </div>
 
 {% endblock %}
