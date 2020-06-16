@@ -1,0 +1,19 @@
+<div class='card bg-transparent border-0'>\
+    <div class='card-body'>\
+        <h4 class='card-title text-center text-primary'>{{ area.location }}</h4>\
+        <h5 class='card-subtitle text-secondary text-center'>{{ area.city }} {{ area.district }}</h5>\
+        <h6 class='card-header text-center'>近期漁況</h6>\
+        <ul class='list-group list-group-flush'>\
+          {% for branch in area.city.branches_city.all %}\
+          <li class='list-group-item bg-transparent'> {{ branch.name }}</li>\
+          {% endfor %}\
+          {% if status %}\
+            {% for statuss in status %}\
+              {% if statuss.area == area %}\
+                <li class='list-group-item bg-transparent'> {{ statuss.fish }} {{ statuss.time }}</li>\
+              {% endif %}\
+            {% endfor %}\
+          {% endif %}\
+        </ul>\
+    </div>\
+</div>\

@@ -90,7 +90,7 @@
       top: 1%;
       left: 2%;
     }
-    
+
     .map-overlay {
       position: absolute;
       font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -187,7 +187,7 @@
     .map-overlay h2 {
       font-size: medium;
     }
-    
+
     .map-overlay h4 {
       font-size: small;
     }
@@ -199,7 +199,7 @@
     }
   }
 
-  
+
   @media screen and (orientation: landscape) and (max-width: 568px){
     .map-lay {
       font-size: small;
@@ -214,11 +214,11 @@
       line-height: 12px;
       font-size: small;
     }
-    
+
     .map-overlay h4 {
       font-size: x-small;
     }
-    
+
     .filter-group {
       top: 42%;
       width: 15%;
@@ -240,13 +240,13 @@
       width: 35%;
     }
   }
- 
+
   @media (min-width: 569px) and (max-width: 1023px) and (orientation: portrait){
 
     .map-lay {
       width: 40%;
     }
-    
+
     .map-overlay {
       width: 35%;
     }
@@ -254,7 +254,7 @@
     .map-overlay h2 {
       font-size: medium;
     }
-    
+
     .map-overlay h4 {
       font-size: small;
     }
@@ -266,7 +266,7 @@
       font-size: small;
     }
   }
-  
+
   @media (min-width: 569px) and (max-width: 1023px) and (orientation: landscape){
 
     .map-overlay {
@@ -278,18 +278,18 @@
       line-height: 24px;
       font-size: medium;
     }
-    
+
     .map-overlay h4 {
       font-size: small;
     }
-    
+
     .filter-group {
       top: 40%;
       width: 15%;
       max-height: 50%;
       font-size: small;
     }
-    
+
     #features {
       width: 30%;
     }
@@ -308,11 +308,11 @@
     .map-overlay h2 {
       font-size: x-large;
     }
-    
+
     .map-overlay h4 {
       font-size: large;
     }
-    
+
     .filter-group {
       top: 9%;
       width: 10%;
@@ -332,11 +332,11 @@
       line-height: 24px;
       font-size: x-large;
     }
-    
+
     .map-overlay h4 {
       font-size: large;
     }
-    
+
     .filter-group {
       top: 22%;
       width: 10%;
@@ -350,7 +350,7 @@
   }
 
 
-  
+
 
 </style>
 
@@ -388,7 +388,7 @@
           'district': '{{ area.city }} {{ area.district }}',
           'branch': [{% for branch in area.city.branches_city.all %}'{{ branch.name }}',{% endfor %}],
           'fish': [{% for branch in area.city.branches_city.all %}{% for fish in branch.fingerling_branch.all %}'{{ fish.name }}',{% endfor %}{% endfor %}],
-          'context': "{% include 'areas_fish_context.html'%}"
+          'context': "{% include 'fishing_status_context.html'%}"
           }
         },{% endfor %}{% endif %}
     ]
