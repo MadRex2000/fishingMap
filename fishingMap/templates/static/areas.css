@@ -1,0 +1,131 @@
+a h6 {
+  margin: 0;
+}
+
+.map-overlay fieldset {
+  display: none;
+  background: #ddd;
+  border: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.map-overlay input {
+  display: block;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.map-overlay .listing {
+  overflow: auto;
+  max-height: 100%;
+}
+
+.map-overlay .listing > * {
+  display: block;
+  padding: 5px 10px;
+  margin: 0;
+}
+
+.map-overlay .listing a {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  color: #404;
+  text-decoration: none;
+}
+
+.map-overlay .listing a:last-child {
+  border: none;
+}
+
+.map-overlay .listing a:hover {
+  background: #f0f0f0;
+}
+
+.mapboxgl-popup {
+  max-width: 400px;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+#map canvas {
+  cursor: crosshair;
+}
+
+body {
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  min-width: 100vw;
+  min-height: 100vh;
+  align-content: flex-start;
+  padding: 0px;
+  flex-direction: column;
+}
+
+.map-overlay {
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.7);
+  overflow: auto;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.map-lay {
+  z-index: 1;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  background-color: rgba(255, 255, 255, 0);
+  overflow: hidden;
+  margin: 10px;
+}
+
+#features {
+  position: absolute;
+  overflow: auto;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+@media screen and (orientation: portrait){
+
+  .map-overlay {
+    align-self: flex-end;
+    margin: 10px 10px 0px 0px;
+    width: 40%;
+    max-height: 65vh;
+  }
+
+  .map-lay {
+    position: fixed;
+    width: 30%;
+  }
+
+  #features {
+    bottom: 0;
+    top: 70%;
+    width: 100%;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  
+  .map-overlay {
+    margin-left: 10px;
+    width: 20vw;
+    max-height: 80vh;
+  }
+  
+  .map-lay {
+    position: relative;
+    width: 20vw;
+  }
+
+  #features {
+    align-self: flex-end;
+    height: 100vh;
+    width: 30%;
+  }
+}
