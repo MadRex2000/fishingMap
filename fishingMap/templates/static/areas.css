@@ -100,7 +100,6 @@ body {
 
   .map-lay {
     position: fixed;
-    width: 30%;
   }
 
   #features {
@@ -120,7 +119,6 @@ body {
   
   .map-lay {
     position: relative;
-    width: 20vw;
   }
 
   #features {
