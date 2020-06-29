@@ -1,0 +1,52 @@
+  body {
+    overflow: hidden;
+    background: url(media/indexImgTransparency.jpg) center center fixed no-repeat;
+    background-size: cover;
+  }
+
+  img {
+    width: auto;
+    height: 100%;
+    opacity: 0.3;
+  }
+  
+  .vertical-center {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    min-width: 100%;
+    overflow: auto;
+  }
+
+  .container {
+    width: 70%;
+    overflow: auto;
+  }
+  
+  .row {
+    margin: 20px;
+  }
+ 
+  @media screen and (orientation: portrait) {
+    div.font {
+      font-size: 7vw;
+    }
+    div.btn-font {
+      font-size: 6vw;
+    }
+    #title-text {
+      margin-bottom: 10vw;
+    }
+  }
+
+  @media screen and (orientation: landscape) {
+    div.font {
+      font-size: 8vh;
+    }
+    div.btn-font {
+      font-size: 7vh;
+    }
+    #title-text {
+      margin-bottom: 10vh;
+    }
+  }
