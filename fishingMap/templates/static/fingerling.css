@@ -1,0 +1,212 @@
+.filter-group input[type='checkbox']:first-child + label {
+  border-radius: 3px 3px 0 0;
+  overflow: auto;
+}
+
+.filter-group label:last-child {
+  border-radius: 0 0 3px 3px;
+  border: none;
+}
+
+.filter-group input[type='checkbox'] {
+  display: none;
+}
+
+.filter-group input[type='checkbox'] + label {
+  background-color: #3386c0;
+  display: block;
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.filter-group input[type='checkbox'] + label {
+  background-color: #3386c0;
+  text-transform: capitalize;
+}
+
+.filter-group input[type='checkbox'] + label:hover,
+.filter-group input[type='checkbox']:checked + label {
+  background-color: #4ea0da;
+}
+
+.filter-group input[type='checkbox']:checked + label:before {
+  content: '✔';
+  margin-right: 5px;
+}
+
+.mapboxgl-popup {
+  max-width: 400px;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.map-overlay .map-overlay-inner {
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.map-overlay h2 {
+  line-height: 24px;
+  display: block;
+  margin: 0 0 10px;
+}
+
+.map-overlay .legend .bar {
+  height: 10px;
+  width: 100%;
+  background: linear-gradient(to right, #fca107, #7f3121);
+}
+
+.map-overlay input {
+  background-color: transparent;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  cursor: ew-resize;
+}
+
+body {
+  overflow: hidden;
+}
+
+a h6 {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  min-width: 100vw;
+  min-height: 100vh;
+  align-content: flex-start;
+  padding: 0px;
+  flex-direction: column;
+}
+
+#map canvas {
+  cursor: crosshair;
+}
+
+#features {
+  overflow: auto;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+}
+
+.map-lay {
+  z-index: 1;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0);
+  margin: 10px;
+  position: relative;
+  align-self: flex-start;
+}
+
+.map-overlay {
+  z-index: 1;
+  width: max(30vw, 30vh);
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  overflow: auto;
+}
+
+.filter-group {
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  z-index: 1;
+  border-radius: 3px;
+  color: #fff;
+  overflow: auto;
+  margin: 0px 10px 0px 10px;
+  flex: 1 1 auto;
+  height: 0px;
+  width: min(15vw, 15vh);
+}
+
+@media screen and (orientation: portrait){
+  
+  .map-lay {
+    position: absolute;
+  }
+
+  .map-overlay {
+    margin: 10px 10px 0px 0px ;
+    align-self: flex-end;
+  }
+
+  .filter-group {
+    align-self: flex-end;
+  }
+
+  #features {
+    overflow: auto;
+    width: 100%;
+    height: 30vh;
+  }
+}
+
+@media screen and (orientation: landscape) {
+
+  .map-lay {
+    position: relative;
+  }
+
+  .map-overlay {
+    margin-left: 10px;
+  }
+
+  .map-overlay h2 {
+    display: block;
+    margin: 0 0 10px;
+  }
+
+  #features {
+    position: fixed;
+    align-self: flex-end;
+    height: 100vh;
+    width: 30%;
+  }
+}
+
+/* except iPad/Pro */
+@media screen and (orientation: portrait) and (max-width: 767px), screen and (orientation: landscape) and (max-width: 1023px) {
+  .map-overlay h2 {
+    font-size: large;
+  }
+
+  .map-overlay h4 {
+    font-size: medium;
+  }
+
+  .filter-group {
+    font-size: small;
+    width: max(15vw, 15vh);
+  }
+}
+
+/* iPhone 5/SE */
+@media screen and (orientation: portrait) and (max-width: 360px), screen and (orientation: landscape) and (max-width: 640px) {
+  
+  .map-overlay {
+    width: max(30vw, 30vh);
+  }
+
+  .map-overlay h2 {
+    font-size: medium;
+  }
+
+  .map-overlay h4 {
+    font-size: small;
+  }
+
+  .filter-group {
+    font-size: x-small;
+    width: max(15vw, 15vh);
+  }
+} 
+
+

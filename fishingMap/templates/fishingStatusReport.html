@@ -2,66 +2,21 @@
 {% block content %}
 {% load i18n %}
 
-<style type="text/css">
-  body {
-    overflow: hidden;
-    background: url(../static/media/indexImgTransparency.jpg) center center fixed no-repeat;
-    background-size: cover;
-  }
-
-  .vertical-center {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    min-width: 100%;
-  }
-
-  form {
-    display: block;
-    background-color: rgba(11, 13, 24, 0.3);
-    padding: 30px;
-  }
-
-  label {
-    color: white;
-  }
-
-  .home {
-    position: absolute;
-    overflow: hidden;
-    margin: 10px;
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  }
-
-  .container h2 {
-    color: white;
-    margin-bottom: 1em;
-  }
-
-</style>
-
+<link rel="stylesheet" href="../static/fishingStatusReport.css" type="text/css">
 <div class="home">
-  <a href="{% url 'home' %}"><button type="button" class="btn btn-primary"><h6>⬅︎回首頁</h6></button></a>
+  <a href="{% url 'home' %}" class="btn btn-primary"><h6>⬅︎回首頁</h6></a>
 </div>
-<div class="vertical-center">
   <div class="container">
     <form method="POST" enctype="multipart/form-data" action="" class="rounded-lg">
-      <div class="row">
-        <h2 class="col text-center">回報魚訊</h2>
-      </div>
-      <div class="row">
+        <h2 class="text-center">回報魚訊</h2>
         {% csrf_token %}
         {{ form.as_p }}
-      </div>
-      <div class="row">
-        <input type="submit" onclick="disp_confirm()" class="btn btn-primary btn-block rounded-lg col" value="確認"/>
-      </div>
+        <input type="submit" onclick="disp_confirm()" class="btn btn-primary btn-block rounded-lg" value="確認"/>
     </form>
   </div>
-</div>
 
 <script>
-  $("p").addClass("form-group col");
+  $("p").addClass("form-group item ");
   $("input, select").addClass("form-control rounded-lg");
   $(function () {
     $("#id_pub_date").datetimepicker( {

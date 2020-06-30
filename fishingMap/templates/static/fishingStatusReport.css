@@ -1,0 +1,66 @@
+a h6 {
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: url(../static/media/indexImgTransparency.jpg) center center fixed no-repeat;
+  background-size: cover;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+form {
+  display: flex;
+  background-color: rgba(11, 13, 24, 0.3);
+  padding: 30px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 70%;
+}
+
+label {
+  color: white;
+}
+
+.home {
+  position: fixed;
+  overflow: hidden;
+  margin: 10px;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.container h2 {
+  color: white;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.item, form>.btn{
+  margin-left: 10px;
+  margin-right: 10px;
+  flex: 1 1 auto;
+}
+
+form>.btn {
+  margin-top: 1em;
+}
+
+@media screen and (orientation: landscape) {
+  .item {
+    width: 33%;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .item {
+    width: 100%;
+  }
+}
