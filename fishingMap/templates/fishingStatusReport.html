@@ -6,7 +6,6 @@
 <div class="home">
   <a href="{% url 'home' %}" class="btn btn-primary"><h6>⬅︎回首頁</h6></a>
 </div>
-<!-- <div class="vertical-center"> -->
   <div class="container">
     <form method="POST" enctype="multipart/form-data" action="" class="rounded-lg">
         <h2 class="text-center">回報魚訊</h2>
@@ -15,11 +14,9 @@
         <input type="submit" onclick="disp_confirm()" class="btn btn-primary btn-block rounded-lg" value="確認"/>
     </form>
   </div>
-<!-- </div> -->
 
 <script>
   $("p").addClass("form-group item ");
-/*  $("p").addClass("form-group col-sm-4 col-12");*/
   $("input, select").addClass("form-control rounded-lg");
   $(function () {
     $("#id_pub_date").datetimepicker( {
