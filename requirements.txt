@@ -12,7 +12,7 @@ MarkupPy==1.14
 odfpy==1.4.1
 openpyxl==3.0.3
 pytz==2020.1
-PyYAML==5.3.1
+PyYAML==5.4
 requests==2.23.0
 sqlparse==0.3.1
 tablib==2.0.0
